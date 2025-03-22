@@ -31,27 +31,27 @@ def generate_hw01():
         embedding_function=openai_ef
     )
 
-    df = pd.read_csv(csv_file)
+    # df = pd.read_csv(csv_file)
 
-    for idx, row in df.iterrows():
-        metadata = {
-            "file_name": csv_file,
-            "name": row.get("Name", ""),
-            "type": row.get("Type", ""),
-            "address": row.get("Address", ""),
-            "tel": row.get("Tel", ""),
-            "city": row.get("City", ""),
-            "town": row.get("Town", ""),
-            "date": int(time.mktime(datetime.datetime.strptime(row.get("CreateDate", "1970-01-01"), "%Y-%m-%d").timetuple()))
-        }
+    # for idx, row in df.iterrows():
+    #     metadata = {
+    #         "file_name": csv_file,
+    #         "name": row.get("Name", ""),
+    #         "type": row.get("Type", ""),
+    #         "address": row.get("Address", ""),
+    #         "tel": row.get("Tel", ""),
+    #         "city": row.get("City", ""),
+    #         "town": row.get("Town", ""),
+    #         "date": int(time.mktime(datetime.datetime.strptime(row.get("CreateDate", "1970-01-01"), "%Y-%m-%d").timetuple()))
+    #     }
 
-        document = row.get("HostWords", "")
+    #     document = row.get("HostWords", "")
 
-        collection.add(
-            ids=[str(idx)],
-            documents=[document],
-            metadatas=[metadata]
-        )
+    #     collection.add(
+    #         ids=[str(idx)],
+    #         documents=[document],
+    #         metadatas=[metadata]
+    #     )
 
     return collection
 
@@ -188,8 +188,8 @@ if __name__ == '__main__':
     # data = collection.get(
     #     limit=1, include=["embeddings", "documents", "metadatas"])
     # print(data)
-    result = generate_hw02("我想要找有關茶餐點的店家", ["宜蘭縣", "新北市"], ["美食"], datetime.datetime(
-        2024, 4, 1), datetime.datetime(2024, 5, 1))
-    print(result)
-    # result = generate_hw03("我想要找南投縣的田媽媽餐廳，招牌是蕎麥麵", "耄饕客棧", "田媽媽（耄饕客棧）", ["南投縣"], ["美食"])
+    # result = generate_hw02("我想要找有關茶餐點的店家", ["宜蘭縣", "新北市"], ["美食"], datetime.datetime(
+    #     2024, 4, 1), datetime.datetime(2024, 5, 1))
     # print(result)
+    result = generate_hw03("我想要找南投縣的田媽媽餐廳，招牌是蕎麥麵", "耄饕客棧", "田媽媽（耄饕客棧）", ["南投縣"], ["美食"])
+    print(result)
